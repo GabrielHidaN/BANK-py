@@ -22,6 +22,7 @@ CALCULAR LIMITE DE EMPRESTIMO
 
 '''
 while True:
+    os.system('clear')
     input_login = input(f'{menu_login}  =>\t')
 
     if input_login == '0':
@@ -29,6 +30,13 @@ while True:
 
     elif input_login == '1':
         os.system('clear')
-        cpf = input('digite um cpf:')
-        cpf_1 = Validador_de_cpf()       
-        cpf_1.validar_cpf(cpf)
+        cpf_input = input('digite um cpf:')
+        cpf = Validador_de_cpf()       
+        validate_cpf = cpf.validar_cpf(cpf_input)
+
+        if validate_cpf == True:
+            password_input = str(input('digite sua senha:'))
+            name_input = str(input('digite seu nome:'))
+            create_user(cpf= cpf_input , password=password_input , name=name_input)
+
+#TODO resolver problema de chave primaria está no db
