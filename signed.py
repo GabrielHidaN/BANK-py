@@ -62,5 +62,5 @@ def create_user(cpf , password , name):
     
     cursor.execute("INSERT INTO usuarios (cpf, pass, nome) VALUES(?,?,?)", (cpf , password , name))
     conn.commit()
-    conn.close()
+
 
