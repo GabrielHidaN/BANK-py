@@ -50,14 +50,13 @@ while True:
                 name_input = str(input('Digite seu nome:\n=>\t'))
                 create_user(cpf= cpf_input , password=password_input , name=name_input)
 
+    elif input_login == '2':
+        os.system('clear')
+        cpf_input = input('Digite seu CPF:\n=>\t')
+        cursor.execute("SELECT * FROM usuarios WHERE cpf = ?", (cpf_input,))
+        user = cursor.fetchone()
+        if not user:
+            print('adicione esse cpf')
 
 
 
-
-
-
-# Obter os resultados
-
-
-
-#TODO resolver problema de chave primaria está no db
