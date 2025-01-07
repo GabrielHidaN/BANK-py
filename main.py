@@ -1,7 +1,13 @@
 import os
 from menu import *
-from signed import *
-import sqlite3
+from cpf_validade import Validador_de_cpf
+from app import Bank
+import sqlite3 
+
+
+conn = sqlite3.connect('dataBase/data_base.db')
+cursor = conn.cursor()
+
 '''
 SISTEMA BANCARIO
 DEVE CONTER BANCO DE DADOS CRUD
@@ -22,15 +28,14 @@ FECHAR CONTA
 CALCULAR LIMITE DE EMPRESTIMO
 
 '''
-conn = sqlite3.connect('dataBase/data_base.db')
 while True:
 
-    input_login = input(f'{menu_login}  =>\t')
+    input_menu = input(f'{menu_login}  =>\t')
 
-    if input_login == '0':
+    if input_menu == '0':
         break
 
-    elif input_login == '1':
+    elif input_menu == '1':
         os.system('clear')
         cpf_input = input('Digite seu CPF:\n=>\t')
         cpf = Validador_de_cpf()       
@@ -48,15 +53,8 @@ while True:
             else:
                 password_input = str(input('Digite sua senha:\n=>\t'))
                 name_input = str(input('Digite seu nome:\n=>\t'))
-                create_user(cpf= cpf_input , password=password_input , name=name_input)
+                Bank.create_user( cpf= cpf_input , password=password_input , name=name_input )
 
-    elif input_login == '2':
-        os.system('clear')
-        cpf_input = input('Digite seu CPF:\n=>\t')
-        cursor.execute("SELECT * FROM usuarios WHERE cpf = ?", (cpf_input,))
-        user = cursor.fetchone()
-        if not user:
-            print('adicione esse cpf')
 
 
 
