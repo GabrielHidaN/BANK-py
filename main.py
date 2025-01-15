@@ -58,3 +58,14 @@ while True:
 
 
 
+    elif input_menu == '2':
+        os.system('clear')
+        cpf_input = input('Digite seu CPF:\n=>\t')
+
+        cursor.execute("SELECT * FROM usuarios WHERE cpf = ?", (cpf_input,))
+        user = cursor.fetchone()
+
+        if user:
+            print('funcionando')
+        else:
+            print('usuario não encontrado')
