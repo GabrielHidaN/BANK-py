@@ -1,7 +1,7 @@
 import os
 from menu import *
 from cpf_validade import Validador_de_cpf
-from app import Bank
+from app import Bank_login
 import sqlite3 
 
 
@@ -53,19 +53,15 @@ while True:
             else:
                 password_input = str(input('Digite sua senha:\n=>\t'))
                 name_input = str(input('Digite seu nome:\n=>\t'))
-                Bank.create_user( cpf= cpf_input , password=password_input , name=name_input )
+                Bank_login.create_user( cpf= cpf_input , password=password_input , name=name_input )
 
 
 
 
     elif input_menu == '2':
         os.system('clear')
-        cpf_input = input('Digite seu CPF:\n=>\t')
+        cpf_input = str(input('Digite seu CPF:\n=>\t'))
+        Bank_login.login_user(cpf_input)
 
-        cursor.execute("SELECT * FROM usuarios WHERE cpf = ?", (cpf_input,))
-        user = cursor.fetchone()
 
-        if user:
-            print('funcionando')
-        else:
-            print('usuario não encontrado')
+        
